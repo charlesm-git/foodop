@@ -1,4 +1,5 @@
 *.pyc
+.env
 .venv
 .pytest*
 .DS_Store
