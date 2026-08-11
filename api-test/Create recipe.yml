@@ -1,0 +1,38 @@
+info:
+  name: Create recipe
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://127.0.0.1:8000/recipes
+  auth: inherit
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Spaghetti Carbonara",
+        "description": "A classic Italian pasta dish"
+      }
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: 201
+    - expression: res.body.name
+      operator: eq
+      value: Spaghetti Carbonara
+    - expression: res.body.ingredients
+      operator: isNotEmpty
+    - expression: res.body.steps
+      operator: isNotEmpty
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

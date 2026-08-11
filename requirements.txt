@@ -1,0 +1,11 @@
+pydantic==2.10.6
+openai==2.15.0
+
+fastapi[standard]
+pydantic-settings
+sqlalchemy[asyncio]
+aiosqlite
+
+# tests
+pytest
+httpx2

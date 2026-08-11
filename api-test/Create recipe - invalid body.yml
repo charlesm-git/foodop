@@ -1,0 +1,31 @@
+info:
+  name: Create recipe - invalid body
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: http://127.0.0.1:8000/recipes
+  auth: inherit
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "",
+        "description": ""
+      }
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: 422
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

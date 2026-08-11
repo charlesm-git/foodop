@@ -1,0 +1,31 @@
+@base = http://localhost:8000
+
+### health
+GET {{base}}/health
+
+### generate and save a recipe
+POST {{base}}/recipes
+Content-Type: application/json
+
+{
+  "name": "Spaghetti Carbonara",
+  "description": "A classic Italian pasta dish"
+}
+
+### list saved recipes
+GET {{base}}/recipes
+
+### fetch one saved recipe
+GET {{base}}/recipes/1
+
+### unknown recipe -> 404
+GET {{base}}/recipes/999999
+
+### invalid body -> 422
+POST {{base}}/recipes
+Content-Type: application/json
+
+{
+  "name": "",
+  "description": ""
+}
