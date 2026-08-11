@@ -55,8 +55,8 @@ async def create_recipe(payload: RecipeRequest, session: SessionDep) -> RecipeRo
     row = RecipeRow(
         name=recipe.name,
         description=recipe.description,
-        ingredients=[i.model_dump() for i in recipe.ingredients],
-        steps=[s.model_dump() for s in recipe.steps],
+        ingredients=[ingredient.model_dump() for ingredient in recipe.ingredients],
+        steps=[step.model_dump() for step in recipe.steps],
     )
     session.add(row)
     await session.commit()
